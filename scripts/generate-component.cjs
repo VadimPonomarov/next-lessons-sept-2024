@@ -1,5 +1,7 @@
-import { exec } from "child_process";
-import readline from "readline";
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { exec } = require("child_process");
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const readline = require("readline");
 
 const args = process.argv.slice(2);
 
