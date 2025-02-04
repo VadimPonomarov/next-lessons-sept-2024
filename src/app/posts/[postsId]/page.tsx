@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { IProps } from "./index";
 import css from "./index.module.css";
 
-const PostsId: FC<IProps> = ({ params }) => {
+const PostsId: FC<IProps> = async ({ params }) => {
   return (
     <div className={css.main}>
       <ul>
