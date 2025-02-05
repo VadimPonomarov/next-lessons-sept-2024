@@ -14,11 +14,11 @@
     },
     "page": {
       "customTemplates": {
-        "component": "src/templates/page/page.tsx",
-        "style": "src/templates/page/index.module.css",
-        "types": "src/templates/page/index.d.ts"
+        "component": "templates/page/page.tsx",
+        "style": "templates/page/index.module.css",
+        "types": "templates/page/index.d.ts"
       },
-      "path": "src/app",
+      "path": "src/app/",
       "withStyle": true,
       "withTest": false,
       "withStory": false,
@@ -27,10 +27,11 @@
     },
     "page-d": {
       "customTemplates": {
-        "component": "src/templates/page-d/page.tsx",
-        "style": "src/templates/page-d/index.module.css",
-        "types": "src/templates/page-d/index.d.ts"
+        "component": "templates/page-d/page.tsx",
+        "style": "templates/page-d/index.module.css",
+        "types": "templates/page-d/index.d.ts"
       },
+      "customDirectory": "templatename/[id]",
       "path": "src/app",
       "withStyle": true,
       "withTest": false,
