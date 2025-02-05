@@ -4,11 +4,28 @@ import { Metadata } from "next";
 import { IProps } from "./index";
 import css from "./index.module.css";
 
-const CommentsId: FC<IProps> = ({ params }) => {
+export const generateMetadata = async ({
+  params,
+}: IProps): Promise<Metadata> => {
+  const result = await params;
+  if (result) {
+    return {
+      title: `${Object.entries(result)[0]?.toString() || "No Title"}`,
+      description: "...",
+    };
+  }
+  return {
+    title: "...",
+    description: "...",
+  };
+};
+
+const CommentsId: FC<IProps> = async ({ params }) => {
+  const result = await params;
   return (
     <div className={css.main}>
       <ul>
-        {Object.entries(params).map(([key, value]) => (
+        {Object.entries(result).map(([key, value]) => (
           <li key={key}>
             {key}: {value}
           </li>
@@ -16,11 +33,6 @@ const CommentsId: FC<IProps> = ({ params }) => {
       </ul>
     </div>
   );
-};
-
-export const metadata: Metadata = {
-  title: CommentsId.name,
-  description: "...",
 };
 
 export default CommentsId;
