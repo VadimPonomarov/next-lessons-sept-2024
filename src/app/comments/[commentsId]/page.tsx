@@ -19,9 +19,14 @@ const CommentsId: FC<IProps> = async ({ params }) => {
   );
 };
 
-export const metadata: Metadata = {
-  title: CommentsId.name,
-  description: "...",
+export const generateMetadata = async ({
+  params,
+}: IProps): Promise<Metadata> => {
+  const result = await params;
+  return {
+    title: `${Object.entries(result)[0].toString()}`,
+    description: "...",
+  };
 };
 
 export default CommentsId;
