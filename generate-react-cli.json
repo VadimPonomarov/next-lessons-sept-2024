@@ -6,11 +6,17 @@
   "testLibrary": "None",
   "component": {
     "default": {
-      "path": "src/app/",
+      "customTemplates": {
+        "component": "templates/default/TemplateName.tsx",
+        "style": "templates/default/index.module.css",
+        "types": "templates/default/index.d.ts"
+      },
+      "path": "src/components/",
       "withStyle": true,
       "withTest": false,
       "withStory": false,
-      "withLazy": false
+      "withLazy": false,
+      "withTypes": true
     },
     "page": {
       "customTemplates": {
