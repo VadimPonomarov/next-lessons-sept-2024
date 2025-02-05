@@ -40,4 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /generate-react-cli.json
-/templates/
+/templates/**/*
