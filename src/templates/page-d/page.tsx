@@ -18,9 +18,15 @@ const TemplateName: FC<IProps> = ({ params }) => {
   );
 };
 
-export const metadata: Metadata = {
-  title: TemplateName.name,
-  description: "...",
+export const generateMetadata = async ({
+  params,
+}: IProps): Promise<Metadata> => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const result = await params;
+  return {
+    title: "...",
+    description: "...",
+  };
 };
 
 export default TemplateName;
