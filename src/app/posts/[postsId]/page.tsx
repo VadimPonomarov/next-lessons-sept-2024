@@ -4,6 +4,22 @@ import { Metadata } from "next";
 import { IProps } from "./index";
 import css from "./index.module.css";
 
+export const generateMetadata = async ({
+  params,
+}: IProps): Promise<Metadata> => {
+  const result = await params;
+  if (result) {
+    return {
+      title: `${Object.entries(result)[0]?.toString() || "No Title"}`,
+      description: "...",
+    };
+  }
+  return {
+    title: "...",
+    description: "...",
+  };
+};
+
 const PostsId: FC<IProps> = async ({ params }) => {
   const result = await params;
   return (
@@ -17,16 +33,6 @@ const PostsId: FC<IProps> = async ({ params }) => {
       </ul>
     </div>
   );
-};
-
-export const generateMetadata = async ({
-  params,
-}: IProps): Promise<Metadata> => {
-  const result = await params;
-  return {
-    title: `${Object.entries(result)[0].toString()}`,
-    description: "...",
-  };
 };
 
 export default PostsId;
