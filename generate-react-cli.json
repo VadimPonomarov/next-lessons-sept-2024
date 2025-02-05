@@ -18,7 +18,7 @@
         "style": "src/templates/page/index.module.css",
         "types": "src/templates/page/index.d.ts"
       },
-      "path": "src/app",
+      "path": "src/app/",
       "withStyle": true,
       "withTest": false,
       "withStory": false,
@@ -31,6 +31,7 @@
         "style": "src/templates/page-d/index.module.css",
         "types": "src/templates/page-d/index.d.ts"
       },
+      "customDirectory": "templatename/[id]",
       "path": "src/app",
       "withStyle": true,
       "withTest": false,
