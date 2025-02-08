@@ -2,47 +2,34 @@
 import {FC, useEffect, useState} from "react";
 import {joiResolver} from "@hookform/resolvers/joi";
 import {useForm} from "react-hook-form";
-import {useSearchParams} from "next/navigation";
 import {ResizableWrapper} from "@/components/All/ResizableWrapper/ResizableWrapper";
 import {Input} from "@/components/ui/input";
-import {useCarForm} from "@/components/Forms/CarForm/use-car-form";
+import {useCarForm} from "@/components/Forms/CarForm/useCarForm";
 import {Button} from "@/components/ui/button";
 import {schema} from "@/components/Forms/CarForm/schemas.joi";
 import {ICar} from "@/common/interfaces/cars.interfaces";
 
-import css from "./car-form.module.css";
+import css from "./carForm.module.css";
 
 const CarForm: FC = () => {
-    const queryParams = useSearchParams();
-    const [car, setCar] = useState<ICar | null>(null);
-
-    useEffect(() => {
-        const carData = queryParams.get("car");
-        if (carData) {
-            try {
-                setCar(JSON.parse(carData));
-            } catch (error) {
-                console.error("Failed to parse car data:", error);
-            }
-        }
-    }, [queryParams]);
+    const [car, setCarAction] = useState<ICar | null>(null);
 
     const {
         register,
         handleSubmit,
         formState: {errors, isValid},
-        reset,
+        reset: resetAction,
     } = useForm<ICar>({
         resolver: joiResolver(schema),
         defaultValues: car || {},
         mode: "all",
     });
 
-    const {onDelete, onSubmit, handleReset} = useCarForm({reset, item: car});
+    const {onDelete, onSubmit, handleReset} = useCarForm({resetAction, item: car, setCarAction});
 
     useEffect(() => {
-        reset(car);
-    }, [car, reset]);
+        resetAction(car);
+    }, [car, resetAction]);
 
     return (
         <div className={css.container}>
