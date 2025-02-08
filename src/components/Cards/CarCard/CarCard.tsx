@@ -6,12 +6,15 @@ import {ICar} from "@/common/interfaces/cars.interfaces";
 import Link from "next/link";
 import {FaEdit} from "react-icons/fa";
 import {fetchDelete} from "@/components/Cards/CarCard/serverActions.ts";
+import {useQueryClient} from "@tanstack/react-query";
 
 type IProps = { item: ICar };
 
 export const CarCard: FC<IProps> = ({item}) => {
+    const queryClient = useQueryClient();
     const handleDelete = async () => {
         await fetchDelete(String(item.id));
+        await queryClient.invalidateQueries({queryKey: ["cars"]});
     };
 
     return (
