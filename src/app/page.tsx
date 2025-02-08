@@ -1,15 +1,15 @@
-import React, { FC } from "react";
-import { Metadata } from "next";
+import React, {FC} from "react";
+import {Metadata} from "next";
 
-import { getMetadata } from "./index.metadata";
+import {getMetadata} from "./index.metadata";
 
 const Home: FC = async () => {
-  return <div>{Home.name}</div>;
+    return <div>Home</div>;
 };
 
 export const metadata: Metadata = await getMetadata({
-  title: Home.name,
-  description: "...",
+    title: "Home",
+    description: "...",
 });
 
 export default Home;
