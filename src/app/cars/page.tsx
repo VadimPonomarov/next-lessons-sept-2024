@@ -17,6 +17,6 @@ const Cars: FC = async () => {
 export default Cars;
 
 export const metadata: Metadata = {
-    title: "...",
+    title: "Cars",
     description: "...",
 };
