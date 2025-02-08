@@ -11,12 +11,12 @@ const Cars: FC = async () => {
     const initialData = await apiCarsService.cars();
     return (
         <div className={css.main}>
-            <div className={"fixed top-[60px] w-full flex justify-center"}>
+            <span className={"fixed top-[60px] ml-[50%] translate-x-[-50%]"}>
                 <Link
                     href={{pathname: "/cars/create", query: {car: {}.toString()}}}>
-                    <Button variant={"outline"}>+</Button>
+                    <Button className={"z-50"} variant={"outline"}>+</Button>
                 </Link>
-            </div>
+            </span>
             <CarsClient initialData={initialData}/>
         </div>
     );

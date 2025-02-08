@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --fix",
-    "generate": "node scripts/generate-component.cjs"
+    "generate": "node scripts/generate-component.cjs",
+    "kill": "npx kill-port"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
