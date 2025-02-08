@@ -4,11 +4,19 @@ import CarsClient from "@/app/cars/CarsClient";
 import {apiCarsService} from "@/api/apiCars";
 
 import css from "./index.module.css";
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
 const Cars: FC = async () => {
     const initialData = await apiCarsService.cars();
     return (
         <div className={css.main}>
+            <div className={"fixed top-[60px] w-full flex justify-center"}>
+                <Link
+                    href={{pathname: "/cars/create", query: {car: {}.toString()}}}>
+                    <Button variant={"outline"}>+</Button>
+                </Link>
+            </div>
             <CarsClient initialData={initialData}/>
         </div>
     );
