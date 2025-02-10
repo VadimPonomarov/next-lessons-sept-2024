@@ -10,9 +10,8 @@ const Cars: FC = async () => {
     const initialData = await apiCarsService.cars();
     return (
         <div className={css.main}>
-            <span className={"fixed top-[50px] left-[50%] m-0 p-0 translate-x-[-50%]"}>
+            <span className={"fixed top-[50px] left-[50%] m-0 p-0 translate-x-[-50%] z-50"}>
                 <AddBtnClient
-                    className={"z-40"}
                     variant={"ghost"}
                     pathname={"/cars/create"}
                 />
