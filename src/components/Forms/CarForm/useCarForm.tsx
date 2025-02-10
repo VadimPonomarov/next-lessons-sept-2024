@@ -8,12 +8,12 @@ import {useRouter, useSearchParams} from "next/navigation";
 import {apiCarsService} from "@/api/apiCars";
 
 type IProps = {
-    resetAction: (
+    resetAction?: (
         values?: DefaultValues<ICar> | ICar,
         keepStateOptions?: KeepStateOptions,
     ) => void;
     item: ICar;
-    setCarAction: Dispatch<SetStateAction<ICar>>;
+    setCarAction?: Dispatch<SetStateAction<ICar>>;
 };
 
 export const useCarForm = ({resetAction, item, setCarAction}: IProps) => {
@@ -63,26 +63,23 @@ export const useCarForm = ({resetAction, item, setCarAction}: IProps) => {
         },
     });
 
-    const onCreate = async (data: ICar) => {
+    const onCreate = (data: ICar) => {
         setFormData(data);
-        // await fetchCreate(data);
         create(data)
         resetAction(data);
-        // await client.invalidateQueries({queryKey: ["cars"]})
-        router.back();
+        router.push("/cars")
     };
 
     const onUpdate = (data: ICar) => {
         setFormData(data);
         update(data);
         resetAction(data);
-        router.back();
+        router.push("/cars")
     };
 
     const onDelete = () => {
         if (item?.id) {
-            del(item.id.toString());
-            router.back();
+            del(String(item.id));
         }
     };
 

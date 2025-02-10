@@ -5,17 +5,18 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} f
 import {ICar} from "@/common/interfaces/cars.interfaces";
 import Link from "next/link";
 import {FaEdit, FaTrash} from "react-icons/fa";
-import {fetchDelete} from "@/components/Cards/CarCard/serverActions.ts";
-import {useQueryClient} from "@tanstack/react-query";
 import SubmitButton from "@/components/All/SubmitButton/SubmitButton.tsx";
+import {useCarForm} from "@/components/Forms/CarForm/useCarForm.tsx";
 
 type IProps = { item: ICar };
 
 export const CarCard: FC<IProps> = ({item}) => {
-    const queryClient = useQueryClient();
+    // const queryClient = useQueryClient();
+    const {onDelete} = useCarForm({item})
     const handleDelete = async () => {
-        await fetchDelete(String(item.id));
-        await queryClient.invalidateQueries({queryKey: ["cars"]});
+        // await fetchDelete(String(item.id));
+        // await queryClient.invalidateQueries({queryKey: ["cars"]});
+        onDelete()
     };
 
     return (

@@ -25,7 +25,7 @@ const CarForm: FC = () => {
         mode: "all",
     });
 
-    const {onDelete, onSubmit, handleReset} = useCarForm({resetAction, item: car, setCarAction});
+    const {onSubmit, handleReset} = useCarForm({resetAction, item: car, setCarAction});
 
     useEffect(() => {
         resetAction(car);
@@ -62,14 +62,11 @@ const CarForm: FC = () => {
                         {errors.year && <p className={css.error}>{errors.year.message}</p>}
                     </div>
                     <div className={css.buttonGroup}>
-                        <Button type="submit" disabled={!isValid}>
+                        <Button size={"sm"} type="submit" disabled={!isValid}>
                             {car?.id ? "Edit" : "Create"}
                         </Button>
-                        <Button type="button" onClick={handleReset}>
+                        <Button size={"sm"} type="button" onClick={handleReset}>
                             Reset
-                        </Button>
-                        <Button type="button" disabled={!car?.id} onClick={onDelete}>
-                            Delete
                         </Button>
                     </div>
                 </form>
