@@ -27,12 +27,14 @@ export const useCarForm = ({resetAction, item, setCarAction}: IProps) => {
         const carData = queryParams.get("car");
         if (carData) {
             try {
-                setCarAction(JSON.parse(carData));
+                const parsedData = JSON.parse(carData);
+                setCarAction(parsedData);
             } catch (error) {
                 console.error("Failed to parse car data:", error);
             }
         }
     }, [queryParams, setCarAction]);
+
 
     // const {mutate: create} = useMutation({
     //     mutationFn: (data: ICarCreate) => apiCarsService.create(data),

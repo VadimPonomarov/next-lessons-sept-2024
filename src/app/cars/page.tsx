@@ -15,7 +15,6 @@ const Cars: FC = async () => {
                     className={"z-40"}
                     variant={"ghost"}
                     pathname={"/cars/create"}
-                    query={{car: {}.toString()}}
                 />
             </span>
             <CarsClient initialData={initialData}/>

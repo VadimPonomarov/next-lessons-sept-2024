@@ -5,7 +5,7 @@ import {Button} from "@/components/ui/button.tsx";
 
 interface IProps {
     pathname: string,
-    query: { [key: string]: string },
+    query?: { [key: string]: string },
     className?: string,
     variant?: "link" | "default" | "destructive" | "outline" | "secondary" | "ghost"
 }
