@@ -2,10 +2,10 @@ import "./globals.css";
 import {MenuMain} from "@/components/Menus/MenuMain/MenuMain";
 import React from "react";
 import RootProvider from "@/common/providers/RootProvider";
+import {PageTracker} from "react-page-tracker";
 
 import {geistMono, geistSans} from "./constants";
 import css from "./index.module.css";
-import {PageTracker} from "react-page-tracker";
 
 export default function RootLayout({
                                        children,
