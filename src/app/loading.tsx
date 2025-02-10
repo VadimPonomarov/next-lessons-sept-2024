@@ -1,11 +1,11 @@
-import React from "react";
+import SkeletonCo from "@/components/Skeleton/Skeleton.tsx";
 
 const Loading = async () => {
-  return (
-    <div>
-      <h1>Loading ...</h1>
-    </div>
-  );
+    return (
+        <div className={"w-full h-full flex justify-center content-center"}>
+            <SkeletonCo/>
+        </div>
+    );
 };
 
 export default Loading;

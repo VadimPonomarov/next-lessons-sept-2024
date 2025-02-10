@@ -63,10 +63,9 @@ export const useCarForm = ({resetAction, item, setCarAction}: IProps) => {
     });
 
     const onCreate = async (data: ICar) => {
-        const newData = {...data, id: Math.floor(Math.random() * 10000)};
-        setFormData(newData);
-        await fetchCreate(newData);
-        resetAction(newData);
+        setFormData(data);
+        await fetchCreate(data);
+        resetAction(data);
         await client.invalidateQueries({queryKey: ["cars"]})
         router.back();
     };

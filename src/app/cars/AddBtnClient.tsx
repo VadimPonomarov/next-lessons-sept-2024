@@ -5,14 +5,17 @@ import {Button} from "@/components/ui/button.tsx";
 
 interface IProps {
     pathname: string,
-    query: { [key: string]: string }
+    query: { [key: string]: string },
+    className?: string,
+    variant?: "link" | "default" | "destructive" | "outline" | "secondary" | "ghost"
 }
 
-const AddBtnClient: FC<IProps> = ({pathname, query}) => {
+const AddBtnClient: FC<IProps> = ({pathname, query, variant = "default", className}) => {
     return (
-        <Link
-            href={{pathname, query}}>
-            <Button className={"z-50"} variant={"outline"}>+</Button>
+        <Link href={{pathname, query}}>
+            <Button className={className} variant={variant}>
+                +
+            </Button>
         </Link>
     );
 };

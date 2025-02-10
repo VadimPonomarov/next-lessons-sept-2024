@@ -4,9 +4,10 @@ import React, {FC} from "react";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {ICar} from "@/common/interfaces/cars.interfaces";
 import Link from "next/link";
-import {FaEdit} from "react-icons/fa";
+import {FaEdit, FaTrash} from "react-icons/fa";
 import {fetchDelete} from "@/components/Cards/CarCard/serverActions.ts";
 import {useQueryClient} from "@tanstack/react-query";
+import SubmitButton from "@/components/All/SubmitButton/SubmitButton.tsx";
 
 type IProps = { item: ICar };
 
@@ -40,7 +41,11 @@ export const CarCard: FC<IProps> = ({item}) => {
         </Link>
       </span>
             <span className="absolute right-4 bottom-2">
-        <button onClick={handleDelete}>Delete</button>
+        <form action={handleDelete}>
+            <SubmitButton type={"submit"} variant={"ghost"} onSubmit={handleDelete}>
+                <FaTrash/>
+            </SubmitButton>
+        </form>
       </span>
         </Card>
     );
