@@ -11,8 +11,12 @@ const Cars: FC = async () => {
     return (
         <div className={css.main}>
             <span className={"fixed top-[50px] left-[50%] m-0 p-0 translate-x-[-50%]"}>
-                <AddBtnClient className={"z-40"} variant={"ghost"} pathname={"/cars/create"}
-                              query={{car: {}.toString()}}/>
+                <AddBtnClient
+                    className={"z-40"}
+                    variant={"ghost"}
+                    pathname={"/cars/create"}
+                    query={{car: {}.toString()}}
+                />
             </span>
             <CarsClient initialData={initialData}/>
         </div>
