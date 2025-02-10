@@ -1,75 +1,66 @@
 "use client";
-import {FC, useEffect, useState} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import {joiResolver} from "@hookform/resolvers/joi";
 import {useForm} from "react-hook-form";
 import {ResizableWrapper} from "@/components/All/ResizableWrapper/ResizableWrapper";
-import {Input} from "@/components/ui/input";
+import FormFieldsRenderer from "@/components/All/FormFieldsRenderer/FormFieldsRenderer";
 import {useCarForm} from "@/components/Forms/CarForm/useCarForm";
 import {Button} from "@/components/ui/button";
 import {schema} from "@/components/Forms/CarForm/schemas.joi";
 import {ICar} from "@/common/interfaces/cars.interfaces";
+import {FormFieldsConfig} from "@/components/All/FormField";
 
 import css from "./carForm.module.css";
 
+const formFields: FormFieldsConfig<ICar> = [
+    {name: "id", label: "ID", type: "number", condition: (car: ICar | null) => !!car?.id, disabled: true},
+    {name: "brand", label: "Brand"},
+    {name: "price", label: "Price", type: "number"},
+    {name: "year", label: "Year", type: "number"},
+];
+
 const CarForm: FC = () => {
-    const [car, setCarAction] = useState<ICar | null>(null);
+    const [item, setAction] = useState<ICar | null>(null);
+    const ref = useRef<HTMLFormElement>(null)
 
     const {
         register,
         handleSubmit,
         formState: {errors, isValid},
         reset: resetAction,
+        getValues
     } = useForm<ICar>({
         resolver: joiResolver(schema),
-        defaultValues: car || {},
+        defaultValues: item || {},
         mode: "all",
     });
 
-    const {onDelete, onSubmit, handleReset} = useCarForm({resetAction, item: car, setCarAction});
+    const {onSubmit, handleReset} = useCarForm({resetAction, item, setAction, getValues});
 
     useEffect(() => {
-        resetAction(car);
-    }, [car, resetAction]);
+        resetAction(item);
+    }, [item, resetAction]);
 
     return (
         <div className={css.container}>
             <ResizableWrapper>
-                <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-                    {car?.id && (
-                        <div className={css.formGroup}>
-                            <label htmlFor="id">ID</label>
-                            <Input {...register("id")} id="id" type="number" disabled/>
-                            {errors.id && <p className={css.error}>{errors.id.message}</p>}
-                        </div>
-                    )}
-                    <div className={css.formGroup}>
-                        <label htmlFor="brand">Brand</label>
-                        <Input {...register("brand")} id="brand"/>
-                        {errors.brand && (
-                            <p className={css.error}>{errors.brand.message}</p>
-                        )}
-                    </div>
-                    <div className={css.formGroup}>
-                        <label htmlFor="price">Price</label>
-                        <Input {...register("price")} id="price" type="number"/>
-                        {errors.price && (
-                            <p className={css.error}>{errors.price.message}</p>
-                        )}
-                    </div>
-                    <div className={css.formGroup}>
-                        <label htmlFor="year">Year</label>
-                        <Input {...register("year")} id="year" type="number"/>
-                        {errors.year && <p className={css.error}>{errors.year.message}</p>}
-                    </div>
+                <form
+                    ref={ref}
+                    onSubmit={handleSubmit(onSubmit)}
+                    className={css.form}
+                >
+                    <FormFieldsRenderer
+                        fields={formFields}
+                        register={register}
+                        errors={errors}
+                        item={item}
+                    />
                     <div className={css.buttonGroup}>
-                        <Button type="submit" disabled={!isValid}>
-                            {car?.id ? "Edit" : "Create"}
+                        <Button size={"sm"} type="submit" disabled={!isValid}>
+                            {item?.id ? "Edit" : "Create"}
                         </Button>
-                        <Button type="button" onClick={handleReset}>
+                        <Button size={"sm"} type="button" onClick={() => handleReset(ref)}>
                             Reset
-                        </Button>
-                        <Button type="button" disabled={!car?.id} onClick={onDelete}>
-                            Delete
                         </Button>
                     </div>
                 </form>

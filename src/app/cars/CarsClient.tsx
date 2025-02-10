@@ -17,7 +17,7 @@ const CarsClient: FC<CarsClientProps> = ({initialData}) => {
         queryKey: ["cars"],
         queryFn: apiCarsService.cars,
         initialData,
-        staleTime: 1000 * 60
+        staleTime: 1000 * 60 * 3
     });
 
     const sortedData = data?.sort((a, b) => a.id - b.id) || [];

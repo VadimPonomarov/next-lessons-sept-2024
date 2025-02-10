@@ -2,21 +2,22 @@
 
 import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {DefaultValues, KeepStateOptions, SubmitHandler} from "react-hook-form";
+import {DefaultValues, KeepStateOptions, SubmitHandler, UseFormGetValues} from "react-hook-form";
 import {ICar, ICarCreate} from "@/common/interfaces/cars.interfaces";
 import {useRouter, useSearchParams} from "next/navigation";
 import {apiCarsService} from "@/api/apiCars";
 
-type IProps = {
-    resetAction: (
-        values?: DefaultValues<ICar> | ICar,
+type IProps<T> = {
+    resetAction?: (
+        values?: DefaultValues<T> | T,
         keepStateOptions?: KeepStateOptions,
     ) => void;
-    item: ICar;
-    setCarAction: Dispatch<SetStateAction<ICar>>;
+    item: T;
+    setAction?: Dispatch<SetStateAction<T>>;
+    getValues: UseFormGetValues<T>
 };
 
-export const useCarForm = ({resetAction, item, setCarAction}: IProps) => {
+export const useCarForm = ({resetAction, item, setAction, getValues}: IProps<ICar>) => {
     const [formData, setFormData] = useState<ICar | null>(null);
     const router = useRouter();
     const client = useQueryClient();
@@ -27,12 +28,12 @@ export const useCarForm = ({resetAction, item, setCarAction}: IProps) => {
         if (carData) {
             try {
                 const parsedData = JSON.parse(carData);
-                setCarAction(parsedData);
+                setAction(parsedData);
             } catch (error) {
                 console.error("Failed to parse car data:", error);
             }
         }
-    }, [queryParams, setCarAction]);
+    }, [queryParams, setAction]);
 
 
     const {mutate: create} = useMutation({
@@ -63,26 +64,19 @@ export const useCarForm = ({resetAction, item, setCarAction}: IProps) => {
         },
     });
 
-    const onCreate = async (data: ICar) => {
-        setFormData(data);
-        // await fetchCreate(data);
+    const onCreate = (data: ICar) => {
         create(data)
-        resetAction(data);
-        // await client.invalidateQueries({queryKey: ["cars"]})
-        router.back();
+        router.push("/cars")
     };
 
     const onUpdate = (data: ICar) => {
-        setFormData(data);
         update(data);
-        resetAction(data);
-        router.back();
+        router.push("/cars")
     };
 
     const onDelete = () => {
         if (item?.id) {
-            del(item.id.toString());
-            router.back();
+            del(String(item.id));
         }
     };
 
@@ -94,14 +88,10 @@ export const useCarForm = ({resetAction, item, setCarAction}: IProps) => {
         }
     };
 
-    const handleReset = () => {
-        setFormData(null);
-        resetAction({
-            id: undefined,
-            brand: "",
-            price: "",
-            year: "",
-        } as unknown as ICar);
+    const handleReset = (ref: React.RefObject<HTMLFormElement>) => {
+        const id = getValues("id")
+        ref.current.reset()
+        resetAction({id})
     };
 
     return {
