@@ -66,10 +66,6 @@
     body {
         @apply bg-background text-foreground;
 
-        .bt {
-            @apply text-white size-min bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm p-1 text-center me-2 mb-2;
-        }
-
         .theme-switch {
             @apply fixed right-0 top-0 m-2 h-6 w-6 rounded-full p-2;
         }

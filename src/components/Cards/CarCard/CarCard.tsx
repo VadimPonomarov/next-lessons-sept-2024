@@ -11,16 +11,13 @@ import {useCarForm} from "@/components/Forms/CarForm/useCarForm.tsx";
 type IProps = { item: ICar };
 
 export const CarCard: FC<IProps> = ({item}) => {
-    // const queryClient = useQueryClient();
     const {onDelete} = useCarForm({item})
     const handleDelete = async () => {
-        // await fetchDelete(String(item.id));
-        // await queryClient.invalidateQueries({queryKey: ["cars"]});
         onDelete()
     };
 
     return (
-        <Card className="relative h-[200px] w-[300px] overflow-auto">
+        <Card className="relative h-[200px] w-[300px] overflow-auto border-2 border-primary">
             <CardHeader>
                 <CardTitle>{item.brand}</CardTitle>
                 <CardDescription>Year: {item.year}</CardDescription>
