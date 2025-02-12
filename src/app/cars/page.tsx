@@ -6,6 +6,8 @@ import AddBtnClient from "@/app/cars/AddBtnClient.tsx";
 
 import css from "./index.module.css";
 
+export const dynamic = "force-dynamic"
+
 const Cars: FC = async () => {
     const initialData = await apiCarsService.cars();
     return (

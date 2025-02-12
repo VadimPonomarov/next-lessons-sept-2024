@@ -14,7 +14,7 @@ type IProps<T> = {
     ) => void;
     item: T;
     setAction?: Dispatch<SetStateAction<T>>;
-    getValues: UseFormGetValues<T>
+    getValues?: UseFormGetValues<T>
 };
 
 export const useCarForm = ({resetAction, item, setAction, getValues}: IProps<ICar>) => {
