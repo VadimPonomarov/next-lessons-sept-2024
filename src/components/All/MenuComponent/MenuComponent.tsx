@@ -16,16 +16,18 @@ const MenuComponent: FC<IProps> = ({children, items, className}) => {
     return (
         <Menubar className={clsx(css.menu, className || "false")}>
             {items.map((item) => (
-                <span key={item.path} className="border-b-2">
-          <MenubarMenu>
-            <Link
-                href={item.path}
-                className={(item.path === pathName && css.active) || "false"}
-            >
-              <MenubarTrigger>{item.label}</MenubarTrigger>
-            </Link>
-          </MenubarMenu>
-        </span>
+                !item.disabled && (
+                    <span key={item.path} className="border-b-2">
+                        <MenubarMenu>
+                            <Link
+                                href={item.path}
+                                className={(item.path === pathName && css.active) || "false"}
+                            >
+                                <MenubarTrigger>{item.label}</MenubarTrigger>
+                            </Link>
+                        </MenubarMenu>
+                    </span>
+                )
             ))}
             {children}
         </Menubar>

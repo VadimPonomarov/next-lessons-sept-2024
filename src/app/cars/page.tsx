@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {Metadata} from "next";
 import CarsClient from "@/app/cars/CarsClient";
-import {apiCarsService} from "@/api/apiCars";
+import {apiCarsService} from "@/app/api/apiCars";
 import AddBtnClient from "@/app/cars/AddBtnClient.tsx";
 
 import css from "./index.module.css";

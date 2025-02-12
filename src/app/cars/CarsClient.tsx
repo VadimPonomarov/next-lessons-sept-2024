@@ -4,7 +4,7 @@ import React, {FC} from "react";
 import {useQuery} from "@tanstack/react-query";
 import {CarCard} from "@/components/Cards/CarCard/CarCard";
 import {ICar} from "@/common/interfaces/cars.interfaces";
-import {apiCarsService} from "@/api/apiCars";
+import {apiCarsService} from "@/app/api/apiCars";
 
 import css from "./index.module.css";
 

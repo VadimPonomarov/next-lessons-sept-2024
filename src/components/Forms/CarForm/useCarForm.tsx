@@ -5,7 +5,7 @@ import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {DefaultValues, KeepStateOptions, SubmitHandler, UseFormGetValues} from "react-hook-form";
 import {ICar, ICarCreate} from "@/common/interfaces/cars.interfaces";
 import {useRouter, useSearchParams} from "next/navigation";
-import {apiCarsService} from "@/api/apiCars";
+import {apiCarsService} from "@/app/api/apiCars";
 
 type IProps<T> = {
     resetAction?: (
