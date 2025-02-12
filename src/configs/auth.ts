@@ -5,8 +5,8 @@ import Credentials from "next-auth/providers/credentials"
 export const authConfig: AuthOptions = {
     providers: [
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID!,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET!
+            clientId: "",
+            clientSecret: ""
         }),
         Credentials({
             credentials: {
