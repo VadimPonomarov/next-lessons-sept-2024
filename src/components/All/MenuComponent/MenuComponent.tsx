@@ -18,26 +18,24 @@ const MenuComponent: FC<IProps> = ({children, items, className}) => {
             {items.map((item) => (
                 !item.disabled && (
                     <span key={item.path} className="border-b-2">
-                        <MenubarMenu>
-                            {item.cb ? (
-                                <div
-                                    onClick={() => item.cb()}
-                                    className={(item.path === pathName && css.active) || "false"}
-                                >
-                                    <MenubarTrigger>{item.label}</MenubarTrigger>
-                                </div>
-                            ) : (
-                                <Link
-                                    href={item.path}
-                                    className={(item.path === pathName && css.active) || "false"}
-                                >
-                                    <MenubarTrigger>
-                                        {item.label}
-                                    </MenubarTrigger>
-                                </Link>
-                            )}
-                        </MenubarMenu>
-                    </span>
+            <MenubarMenu>
+              {item.cb ? (
+                  <div
+                      onClick={() => item.cb()}
+                      className={(item.path === pathName && css.active) || "false"}
+                  >
+                      <MenubarTrigger>{item.label}</MenubarTrigger>
+                  </div>
+              ) : (
+                  <Link
+                      href={item.path}
+                      className={(item.path === pathName && css.active) || "false"}
+                  >
+                      <MenubarTrigger>{item.label}</MenubarTrigger>
+                  </Link>
+              )}
+            </MenubarMenu>
+          </span>
                 )
             ))}
             {children}
@@ -46,4 +44,5 @@ const MenuComponent: FC<IProps> = ({children, items, className}) => {
 };
 
 export default MenuComponent;
+
 

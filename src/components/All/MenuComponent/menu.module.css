@@ -1,5 +1,5 @@
 .menu {
-    @apply h-[45px] border-b-2 fixed z-40 mb-2 flex w-full justify-center gap-4  bg-primary p-2 text-primary-foreground;
+    @apply h-[45px] border-4 fixed z-40 mb-2 flex w-full justify-center gap-4  bg-primary text-primary-foreground;
 }
 
 .active {

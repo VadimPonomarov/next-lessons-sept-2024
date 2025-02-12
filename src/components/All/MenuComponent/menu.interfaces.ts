@@ -1,6 +1,8 @@
+import {ReactNode} from "react";
+
 export interface IMenuItem {
     path: string;
-    label: string;
+    label: string | ReactNode;
     requiresAuth?: boolean;
     disabled?: boolean;
     cb?: () => void

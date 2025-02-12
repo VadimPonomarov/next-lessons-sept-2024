@@ -69,11 +69,6 @@
         .theme-switch {
             @apply fixed right-0 top-0 m-2 h-6 w-6 rounded-full p-2;
         }
-
-        .disabled {
-            color: gray;
-            pointer-events: none;
-        }
     }
 
 }
